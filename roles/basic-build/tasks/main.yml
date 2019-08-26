@@ -1,0 +1,10 @@
+#Installs a package, defined on pkg=
+- name: "Installing VIM"
+  yum: pkg=vim state=installed
+
+- name: "Installing GIT"
+  yum: pkg=git state=installed
+
+#copy files control PC to destination. source is the path relative to the main.yml file.
+- name: "Copying Files"
+  copy: src=../files/test.txt dest=/home/ec2-user/test.txt owner=ec2-user group=ec2-user mode=0644

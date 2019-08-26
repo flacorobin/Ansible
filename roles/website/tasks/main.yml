@@ -1,0 +1,14 @@
+---
+- name: "Installing WebServer Packages"
+  yum: name={{ item }}
+  with_items:
+  - httpd
+
+- name: "Moving Webpage"
+  template: src=../files/index.html dest=/var/www/html/ owner=root group=root mode=0644
+
+- name: "Starting Apache on AppServer"
+  service:
+    name: httpd
+    state: started
+    enabled: yes

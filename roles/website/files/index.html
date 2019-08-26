@@ -1,0 +1,9 @@
+<html>
+<head><title>Test page for Backend server</title></head>
+<body>
+This is a simple test page hosted on backend server.
+<br>WebServer IP Address is: {{hostvars['webserver']['ansible_eth0']['ipv4']['address']}}
+<br>AppServer IP Address is: {{hostvars['appserver']['ansible_eth0']['ipv4']['address']}}
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+---
+- name: "Installing WebServer Packages"
+  yum: name={{ item }}
+  with_items:
+  - httpd
+
+- name: "Moving Apache Reverse Proxy Config to WebServer"
+  template: src=../files/httpd.conf dest=/etc/httpd/conf/ owner=root group=root mode=0644
+
+- name: "Config SELinux Apache for outbound connections"
+  shell: sudo /usr/sbin/setsebool -P httpd_can_network_connect 1
+
+- name: "Start Apache as RP on WebServer"
+  service:
+    name: httpd
+    state: started
+    enabled: yes

@@ -1,0 +1,14 @@
+- hosts: all
+  become: true
+  roles:
+  - basic-build
+
+- hosts: app
+  become: true
+  roles:
+  - website
+
+- hosts: web
+  become: true
+  roles:
+  - reverse-proxy
