@@ -8,3 +8,7 @@ Ansible exmaple playbook that runs 3 roles:
  -website
   Installs Apache, copies a small site to /var/www/html folder, starts and enables Apache
 
+This ansible playbook expects the following:
+-Webserver and AppServer are recheable, resolvable via DNS or hosts.
+-Ansible computer can access both servers type via ssh passwordless
+-User on servers us able to elevate via sudo. If not run ansible-playbook -K playbook.yml (then input root password)
