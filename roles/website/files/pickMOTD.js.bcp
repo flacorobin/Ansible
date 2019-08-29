@@ -1,0 +1,10 @@
+var quotes = [
+'I be getting high just to balance out the lows.- Drake',
+'Music is like a dream. One that I cannot hear. Beethoven',
+'Without music, life would be a mistake. Nietzsche',
+]
+
+function newMOTD() {
+	var randomNumber = Math.floor(Math.random() * (quotes.length));
+	document.getElementById('motdDisplay').innerHTML = quotes[randomNumber];
+}

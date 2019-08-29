@@ -1,13 +1,31 @@
 ---
 - name: "Installing WebServer Packages"
-  yum: name={{ item }}
-  with_items:
-  - httpd
+  yum:
+          name: "{{ packages }}"
+  vars:
+          packages:
+          - httpd
+          - httpd-tools
 
-- name: "Moving Webpage"
-  template: src=../files/index.html dest=/var/www/html/ owner=root group=root mode=0644
+- name: "Moving HTML Webpage resources"
+  template:
+    src: ../files/index.html 
+    dest: /var/www/html/
+    owner: root
+    group: root 
+    mode: '0644'
   notify:
-    - restart-httpd
+  - restart-httpd
+
+- name: "Moving JS Webpage resources"
+  copy:
+    src: ../files/pickMOTD.js
+    dest: /var/www/html/
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+  - restart-httpd
 
 - name: "Starting Apache on AppServer"
   service:

@@ -2,9 +2,18 @@
 <head><title>Test page for Backend server</title></head>
 <body>
 This is a simple test page hosted on backend server.
-<br>WebServer IP Address is: {{hostvars['webserver']['ansible_eth0']['ipv4']['address']}}
-<br>AppServer IP Address is: {{hostvars['appserver']['ansible_eth0']['ipv4']['address']}}
+<br>WebServer IP Address is: 172.31.89.64
+<br>AppServer IP Address is: 172.31.83.45
 <br><b>Proudly running on Apache!</b>
+
+<h1> Get a message of the Day from our WebMaster </h1>
+<div id="motdDisplay">
+
+</div>
+<button onclick="newMOTD()">MOTD</button>
+
+<script src="pickMOTD.js"></script>
+
 </body>
 
 </html>

@@ -1,16 +1,31 @@
 ---
 - name: "Installing WebServer Packages"
-  yum: name={{ item }}
-  with_items:
-  - httpd
+  yum:
+          name: "{{ packages }}"
+  vars:
+          packages:
+          - httpd
+          - httpd-tools
 
 - name: "Moving Apache Reverse Proxy Config to WebServer"
-  template: src=../files/httpd.conf dest=/etc/httpd/conf/ owner=root group=root mode=0644
+  template:
+          src: ../files/httpd.conf 
+          dest: /etc/httpd/conf/ 
+          owner: root 
+          group: root 
+          mode: '0644'
   notify:
     - restart-httpd
 
-- name: "Config SELinux Apache for outbound connections"
-  shell: /usr/sbin/setsebool -P httpd_can_network_connect 1
+      #Removing this shell entry for a proper seboolean module
+      #- name: "Config SELinux Apache for outbound connections"
+      #  shell: /usr/sbin/setsebool -P httpd_can_network_connect 1
+
+- name: "Toggling httpd_can_network_connect"
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
 
 - name: "Start Apache as RP on WebServer"
   service:
