@@ -9,6 +9,6 @@ Ansible example playbook that runs 3 roles:
   Installs Apache, copies a small site to /var/www/html folder, starts and enables Apache
 
 This ansible playbook expects the following:
--Webserver and AppServer are recheable, resolvable via DNS or hosts.
+-Webserver and AppServer are reachable, resolvable via DNS or hosts file.
 -Ansible computer can access both servers type via ssh passwordless
--User on servers us able to elevate via sudo. If not run ansible-playbook -K playbook.yml (then input root password)
+-User on servers are able to elevate via sudo (If not run ansible-playbook -K playbook.yml, then input root password)
